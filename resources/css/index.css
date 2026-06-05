@@ -1,0 +1,393 @@
+/* DRIVADO PREMIUM DESIGN SYSTEM */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Color Palette */
+    --primary-black: #0A0A0A;
+    --deep-gray: #1A1A1A;
+    --accent-silver: #C0C0C0;
+    --metallic-silver: #E8E8E8;
+    --pure-white: #FFFFFF;
+    --soft-gray: #F5F5F7;
+    --premium-gold: #D4AF37;
+    --border-color: rgba(0, 0, 0, 0.08);
+    
+    /* Semantic Colors */
+    --success-green: #16A34A;
+    --danger-red: #DC2626;
+    --warning-amber: #F59E0B;
+    
+    /* Typography */
+    --font-main: 'Outfit', sans-serif;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    
+    /* Transitions */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-main);
+    background-color: var(--soft-gray);
+    color: var(--primary-black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-wrapper {
+    min-vh: 100vh;
+    /* Default padding for fixed navbar */
+    padding-top: 0; 
+}
+
+/* Premium Navbar */
+.navbar {
+    background: transparent;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999 !important; /* Ensure it's above everything */
+}
+
+.navbar.scrolled {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.logo-main {
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar.scrolled .logo-main {
+    height: 32px;
+}
+
+.dropdown-menu {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25) !important;
+    animation: fadeInDropdown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInDropdown {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    transition: var(--transition-base);
+}
+
+.logo-car-img {
+    height: 45px;
+    width: auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    mix-blend-mode: screen;
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.logo-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.25rem;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E8E8E8 50%, #C0C0C0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+}
+
+.navbar.scrolled .logo-car-img {
+    height: 35px;
+}
+
+.navbar.scrolled .logo-text {
+    font-size: 1.3rem;
+    letter-spacing: 0.15rem;
+}
+
+.logo-car-img-footer {
+    height: 55px;
+    width: auto;
+    mix-blend-mode: screen;
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.logo-text-footer {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 0.3rem;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E8E8E8 50%, #C0C0C0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    color: var(--pure-white) !important;
+}
+
+.navbar-brand i {
+    color: var(--accent-silver);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.25rem !important;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--pure-white);
+    transition: var(--transition-base);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 20px;
+}
+
+.text-premium {
+    color: var(--premium-gold) !important;
+}
+
+/* Buttons */
+.btn {
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    transition: var(--transition-base);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+.btn-dark {
+    background: var(--primary-black);
+    border: 1px solid var(--primary-black);
+}
+
+.btn-dark:hover {
+    background: #222;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-premium {
+    background: var(--pure-white);
+    color: var(--primary-black);
+    border: none;
+}
+
+.btn-premium:hover {
+    background: var(--accent-silver);
+    color: var(--primary-black);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+}
+
+/* Hero Section Refinement */
+.hero-section {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-wrapper .bi-speedometer2 {
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-title {
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+.search-widget {
+    background: var(--pure-white);
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    margin-top: -3rem;
+    position: relative;
+    z-index: 100; /* Increased to stay above hero abstract elements */
+}
+
+.search-widget input, .search-widget select {
+    border: none;
+    padding: 1rem;
+    font-weight: 500;
+    background: var(--soft-gray);
+    border-radius: 12px;
+}
+
+.search-widget input:focus, .search-widget select:focus {
+    background: #ececef;
+    box-shadow: none;
+}
+
+/* Vehicle Cards */
+.vehicle-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--pure-white);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
+}
+
+.vehicle-card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-base);
+}
+
+.vehicle-card:hover .card-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.price-tag {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.vehicle-specs {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+    background: var(--soft-gray);
+    border-radius: 12px;
+}
+
+.spec-item {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.spec-item i {
+    margin-right: 0.5rem;
+    color: var(--primary-black);
+}
+
+/* Section Headings */
+.section-title {
+    font-weight: 800;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+
+/* Footer Refinement */
+footer {
+    background: var(--primary-black);
+    padding: 6rem 0 3rem;
+}
+
+.footer-logo {
+    font-weight: 800;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.footer-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: var(--transition-base);
+    display: block;
+    margin-bottom: 0.75rem;
+}
+.filter-sidebar {
+    transition: top 0.3s ease;
+}
+
+.navbar.scrolled ~ .main-wrapper .filter-sidebar {
+    top: 90px !important;
+}
+
+.footer-link:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+/* Clickable Card Pattern */
+.vehicle-card {
+    position: relative;
+    transition: var(--transition-base);
+}
+
+.vehicle-card:hover {
+    transform: translateY(-10px);
+}
+
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+}
+
+.vehicle-card .btn {
+    position: relative;
+    z-index: 2; /* Keep actual buttons on top */
+}
