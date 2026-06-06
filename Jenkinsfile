@@ -7,10 +7,10 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
 
-    environment {
-        PHP_BIN = "php"
-        COMPOSER_BIN = "composer"
-    }
+  environment {
+    PHP_BIN = "C:\\xampp\\php\\php.exe"
+    COMPOSER_BIN = "C:\\laragon\\bin\\composer\\composer.bat"
+}
 
     stages {
         stage('Checkout') {
@@ -37,7 +37,7 @@ pipeline {
                     if (!fileExists('.env')) {
                         bat 'copy .env.example .env'
                     }
-                    bat 'php --version'
+                    bat '%PHP_BIN% --version'
                 }
             }
         }
@@ -49,7 +49,7 @@ pipeline {
                     echo "Stage: Dependencies"
                     echo "=========================================="
                 }
-                bat 'composer install --no-interaction --prefer-dist --no-progress'
+                bat '%COMPOSER_BIN% install --no-interaction --prefer-dist --no-progress'
             }
         }
 
@@ -60,7 +60,7 @@ pipeline {
                     echo "Stage: Key Generation"
                     echo "=========================================="
                 }
-                bat 'php artisan key:generate'
+                bat '%PHP_BIN% artisan key:generate'
             }
         }
 
@@ -71,7 +71,7 @@ pipeline {
                     echo "Stage: Database Migration"
                     echo "=========================================="
                 }
-                bat 'php artisan migrate --force --env=testing'
+                bat '%PHP_BIN% artisan migrate --force --env=testing'
             }
         }
 
