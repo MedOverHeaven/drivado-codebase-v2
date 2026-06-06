@@ -55,6 +55,21 @@ pipeline {
         '''
     }
 }
+             
+        stage('Build Assets') {
+    steps {
+        script {
+            echo "=========================================="
+            echo "Stage: Build Assets - npm install & build"
+            echo "=========================================="
+        }
+        bat '''
+            set PATH=C:\\Program Files\\nodejs;%PATH%
+            npm install --no-progress
+            npm run build
+        '''
+    }
+}
 
         stage('Key Generation') {
             steps {
