@@ -8,7 +8,7 @@ pipeline {
     }
 
   environment {
-    PHP_BIN = "C:\\xampp\\php\\php.exe"
+    PHP_BIN = "C:\\laragon\\bin\\php\\php-8.3.30-Win32-vs16-x64\\php.exe"
     COMPOSER_BIN = "C:\\laragon\\bin\\composer\\composer.bat"
 }
 
@@ -28,30 +28,33 @@ pipeline {
             }
         }
 
-        stage('Environment Setup') {
-            steps {
-                script {
-                    echo "=========================================="
-                    echo "Stage: Environment Setup"
-                    echo "=========================================="
-                    if (!fileExists('.env')) {
-                        bat 'copy .env.example .env'
-                    }
-                    bat '%PHP_BIN% --version'
-                }
+stage('Environment Setup') {
+    steps {
+        script {
+            echo "=========================================="
+            echo "Stage: Environment Setup"
+            echo "=========================================="
+            if (!fileExists('.env')) {
+                bat 'copy .env.example .env'
             }
+            bat '%PHP_BIN% --version'
         }
+    }
+}
 
-        stage('Dependencies') {
-            steps {
-                script {
-                    echo "=========================================="
-                    echo "Stage: Dependencies"
-                    echo "=========================================="
-                }
-                bat '%COMPOSER_BIN% install --no-interaction --prefer-dist --no-progress'
-            }
+stage('Dependencies') {
+    steps {
+        script {
+            echo "=========================================="
+            echo "Stage: Dependencies"
+            echo "=========================================="
         }
+        bat '''
+            set PATH=C:\\laragon\\bin\\php\\php-8.3.30-Win32-vs16-x64;%PATH%
+            C:\\laragon\\bin\\composer\\composer.bat install --no-interaction --prefer-dist --no-progress
+        '''
+    }
+}
 
         stage('Key Generation') {
             steps {
