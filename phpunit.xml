@@ -52,5 +52,6 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="VITE_SKIP_MANIFEST_WARNING" value="1"/>
     </php>
 </phpunit>

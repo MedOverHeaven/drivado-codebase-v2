@@ -56,7 +56,7 @@ pipeline {
     }
 }
              
-        stage('Build Assets') {
+   stage('Build Assets') {
     steps {
         script {
             echo "=========================================="
@@ -68,6 +68,7 @@ pipeline {
             npm install --no-progress
             npm run build
         '''
+        bat '%PHP_BIN% artisan view:clear'
     }
 }
 
