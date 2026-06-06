@@ -24,7 +24,7 @@ pipeline {
                     [
                         $class: 'GitSCM',
                         branches: [[name: '*/main']],
-                        userRemoteConfigs: [[url: 'https://github.com/YOUR_USERNAME/YOUR_REPO.git']]
+                        userRemoteConfigs: [[url: 'https://github.com/MedOverHeaven/drivado-codebase-v2']]
                     ]
                 )
             }
@@ -115,7 +115,7 @@ pipeline {
                     echo "Stage: Test Report"
                     echo "=========================================="
                 }
-                sh 'cat test-output.txt || echo "Test output file not found"'
+                bat 'cat test-output.txt || echo "Test output file not found"'
             }
         }
     }
