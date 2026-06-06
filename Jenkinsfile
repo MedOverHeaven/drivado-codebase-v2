@@ -85,28 +85,35 @@ pipeline {
                 bat '${PHP_BIN} artisan migrate --force --env=testing'
             }
         }
-
-        stage('Tests') {
-            steps {
-                script {
-                    echo "=========================================="
-                    echo "Stage: Tests - Running php artisan test"
-                    echo "=========================================="
-                }
-                try {
-                    bat '''
-                        setlocal enabledelayedexpansion
-                        ${PHP_BIN} artisan test --no-coverage > test-output.txt 2>&1
-                        set TEST_EXIT_CODE=!ERRORLEVEL!
-                        type test-output.txt
-                        exit !TEST_EXIT_CODE!
-                    '''
-                } catch (Exception e) {
-                    echo "Test execution completed with status"
-                    unstable("Tests failed or had warnings")
-                }
+stage('Tests') {
+    steps {
+        script {
+            echo "=========================================="
+            echo "Stage: Tests - Running php artisan test"
+            echo "=========================================="
+            
+            def result = bat(
+                script: 'php artisan test --no-coverage > test-output.txt 2>&1',
+                returnStatus: true
+            )
+            bat 'type test-output.txt'
+            if (result != 0) {
+                unstable("Tests failed or had warnings")
             }
         }
+    }
+}
+
+stage('Test Report') {
+    steps {
+        script {
+            echo "=========================================="
+            echo "Stage: Test Report"
+            echo "=========================================="
+            bat 'type test-output.txt || echo Test output file not found'
+        }
+    }
+}
 
         stage('Test Report') {
             steps {
