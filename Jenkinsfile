@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-stage('Environment Setup') {
+       stage('Environment Setup') {
     steps {
         script {
             echo "=========================================="
@@ -42,7 +42,7 @@ stage('Environment Setup') {
     }
 }
 
-stage('Dependencies') {
+       stage('Dependencies') {
     steps {
         script {
             echo "=========================================="
@@ -64,6 +64,7 @@ stage('Dependencies') {
                     echo "=========================================="
                 }
                 bat '%PHP_BIN% artisan key:generate'
+                bat '%PHP_BIN% artisan key:generate --env=testing'
             }
         }
 
