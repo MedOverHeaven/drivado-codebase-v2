@@ -85,7 +85,7 @@ stage('Dependencies') {
                     echo "Stage: Tests"
                     echo "=========================================="
                     def result = bat(
-                        script: 'php artisan test --no-coverage > test-output.txt 2>&1',
+                        script: '%PHP_BIN% artisan test --no-coverage > test-output.txt 2>&1',
                         returnStatus: true
                     )
                     bat 'type test-output.txt'
