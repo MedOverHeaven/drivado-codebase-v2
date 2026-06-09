@@ -32,15 +32,16 @@ class DatabaseLogicTest extends TestCase
     'user_id' => $user->id,
 ]);
 
-        $vehicle = Vehicle::create([
-            'agency_id' => $agency->id,
-            'make' => 'Dacia',
-            'model' => 'Logan',
-            'year' => 2023,
-            'category' => 'sedan',
-            'price_per_day' => 250,
-            'is_available' => true,
-        ]);
+       $vehicle = Vehicle::create([
+    'agency_id'     => $agency->id,
+    'make'          => 'Dacia',
+    'model'         => 'Logan',
+    'year'          => 2023,
+    'category'      => 'sedan',
+    'description'   => 'Véhicule de test',   // ← AJOUTER CETTE LIGNE
+    'price_per_day' => 250,
+    'is_available'  => true,
+]);
 
         $this->assertEquals($agency->id, $vehicle->agency->id);
     }
