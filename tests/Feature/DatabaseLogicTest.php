@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Vehicle;
 use App\Models\Agency;
+use App\Models\User;
 
 class DatabaseLogicTest extends TestCase
 {
@@ -13,6 +14,14 @@ class DatabaseLogicTest extends TestCase
 
     public function test_vehicle_belongs_to_agency(): void
     {
+        $user = User::create([
+    'name' => 'Propriétaire Test',
+    'email' => 'owner@test.com',
+    'phone' => '0600000000',
+    'password' => bcrypt('password'),
+    'role' => 'agency',
+]);
+
            $agency = Agency::create([
     'agency_name' => 'Test Agency',
     'city' => 'Oujda',
@@ -20,7 +29,7 @@ class DatabaseLogicTest extends TestCase
     'phone' => '0600000000',
     'email' => 'test@agency.com',
     'legal_id' => 'RC123456',
-    'user_id' => 1,
+    'user_id' => $user->id,
 ]);
 
         $vehicle = Vehicle::create([
